@@ -143,32 +143,33 @@
 
 	//add image
 	// instantiate a loader
-	var loader = new THREE.ImageLoader();
 
-	//load a image resource
-	loader.load(
-		// resource URL
-		'image/surf.jpg',
-
-		// onLoad callback
-		function ( image ) {
-			// use the image, e.g. draw part of it on a canvas
-			var canvas = document.createElement( 'canvas' );
-			var context = canvas.getContext( '2d' );
-			context.drawImage( image, 100, 100 );
-			// scene.add( loader );
-		},
-
-		// onProgress callback currently not supported
-		undefined,
-
-		// onError callback
-		function () {
-			console.error( 'An error happened.' );
-		}
-	);
-// 
-// 	var geometry	= new THREE.CubeGeometry(1,1,1);
+	// var loader = new THREE.ImageLoader();
+  //
+	// //load a image resource
+	// loader.load(
+	// 	// resource URL
+		// 'image/surf.jpg',
+  //
+	// 	// onLoad callback
+	// 	function ( image ) {
+	// 		// use the image, e.g. draw part of it on a canvas
+	// 		var canvas = document.createElement( 'canvas' );
+	// 		var context = canvas.getContext( '2d' );
+	// 		context.drawImage( image, 100, 100 );
+	// 		// scene.add( loader );
+	// 	},
+  //
+	// 	// onProgress callback currently not supported
+	// 	undefined,
+  //
+	// 	// onError callback
+	// 	function () {
+	// 		console.error( 'An error happened.' );
+	// 	}
+	// );
+//
+	// var geometry	= new THREE.CubeGeometry(1,1,1);
 // 	var material	= new THREE.MeshNormalMaterial({
 // 		transparent : true,
 // 		opacity: 0.5,
@@ -189,10 +190,12 @@
 // 		mesh.rotation.x += Math.PI*delta
 // 	})
 //
-// 	var img = new THREE.MeshBasicMaterial({ //CHANGED to MeshBasicMaterial
-// 		map:THREE.ImageUtils.loadTexture('img/front.jpg')
-// });
-// img.map.needsUpdate = true;
+	var img = new THREE.MeshBasicMaterial({
+		map:THREE.ImageUtils.loadTexture('image/surf.jpg')
+});
+		img.map.needsUpdate = true;
+	//scene.add( image );
+
 
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
@@ -217,4 +220,6 @@
 			onRenderFct(deltaMsec/1000, nowMsec/1000)
 		})
 	})
-</script></body>
+	</script>
+
+</body>
