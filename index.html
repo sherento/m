@@ -6,10 +6,12 @@
 <script src="ar.js"></script>
 <script>THREEx.ArToolkitContext.baseURL = '../'</script>
 
-<body style='margin : 0px; overflow: hidden; font-family: Monospace;'><div style='position: absolute; top: 10px; width:100%; text-align: center; z-index: 1;'>
+<body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
+	<div style='position: absolute; top: 10px; width:100%; text-align: center; z-index: 1;'>
 
-</div>
-<script>
+	</div>
+
+	<script>
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Init
 	//////////////////////////////////////////////////////////////////////////////////
@@ -118,26 +120,52 @@
 	//////////////////////////////////////////////////////////////////////////////////
 
 	// add a torus knot
-	var geometry	= new THREE.CubeGeometry(1,1,1);
-	var material	= new THREE.MeshNormalMaterial({
-		transparent : true,
-		opacity: 0.5,
-		side: THREE.DoubleSide
-	});
-	var mesh	= new THREE.Mesh( geometry, material );
-	mesh.position.y	= geometry.parameters.height/2
-	scene.add( mesh );
+	// var geometry	= new THREE.CubeGeometry(1,1,1);
+	// var material	= new THREE.MeshNormalMaterial({
+	// 	transparent : true,
+	// 	opacity: 0.5,
+	// 	side: THREE.DoubleSide
+	// });
+	// var mesh	= new THREE.Mesh( geometry, material );
+	// mesh.position.y	= geometry.parameters.height/2
+	// scene.add( mesh );
+  //
+	// var geometry	= new THREE.TorusKnotGeometry(0.3,0.1,64,16);
+	// var material	= new THREE.MeshNormalMaterial();
+	// var mesh	= new THREE.Mesh( geometry, material );
+	// mesh.position.y	= 0.5
+	// scene.add( mesh );
+  //
+  //
+	// onRenderFcts.push(function(delta){
+	// 	mesh.rotation.x += Math.PI*delta
+	// })
 
-	var geometry	= new THREE.TorusKnotGeometry(0.3,0.1,64,16);
-	var material	= new THREE.MeshNormalMaterial();
-	var mesh	= new THREE.Mesh( geometry, material );
-	mesh.position.y	= 0.5
-	scene.add( mesh );
+	//add image
+	// instantiate a loader
+	var loader = new THREE.ImageLoader();
 
+	// load a image resource
+	loader.load(
+		// resource URL
+		'image/surf.jpg',
 
-	onRenderFcts.push(function(delta){
-		mesh.rotation.x += Math.PI*delta
-	})
+		// onLoad callback
+		function ( image ) {
+			// use the image, e.g. draw part of it on a canvas
+			var canvas = document.createElement( 'canvas' );
+			var context = canvas.getContext( '2d' );
+			context.drawImage( image, 100, 100 );
+		},
+
+		// onProgress callback currently not supported
+		undefined,
+
+		// onError callback
+		function () {
+			console.error( 'An error happened.' );
+		}
+	);
 
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
