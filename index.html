@@ -175,7 +175,9 @@ if ( intersects.length > 0 ) {
     intersects[ 0 ].object.material = new THREE.MeshBasicMaterial({
         map: newTexture
      });
+	scene.add ( intersects );
 }
+
 
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
