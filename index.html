@@ -143,41 +143,56 @@
 
 	//add image
 	// instantiate a loader
-	// var loader = new THREE.ImageLoader();
+	var loader = new THREE.ImageLoader();
 
-	// load a image resource
-	// loader.load(
-	// 	// resource URL
-	// 	'image/surf.jpg',
-  //
-	// 	// onLoad callback
-	// 	function ( image ) {
-	// 		// use the image, e.g. draw part of it on a canvas
-	// 		var canvas = document.createElement( 'canvas' );
-	// 		var context = canvas.getContext( '2d' );
-	// 		context.drawImage( image, 100, 100 );
-	// 		scene.add( loader );
-	// 	},
-  //
-	// 	// onProgress callback currently not supported
-	// 	undefined,
-  //
-	// 	// onError callback
-	// 	function () {
-	// 		console.error( 'An error happened.' );
-	// 	}
-	// );
+	//load a image resource
+	loader.load(
+		// resource URL
+		'image/surf.jpg',
 
-	var intersects = raycaster.intersectObjects( targetList );
-if ( intersects.length > 0 ) {
-    textureLoader.crossOrigin = "Anonymous"
-    newTexture = textureLoader.load(image_urls[image_index] +    'image/surf.jpg');
-    intersects[ 0 ].object.material = new THREE.MeshBasicMaterial({
-        map: newTexture
-     });
-	scene.add ( intersects );
-}
+		// onLoad callback
+		function ( image ) {
+			// use the image, e.g. draw part of it on a canvas
+			var canvas = document.createElement( 'canvas' );
+			var context = canvas.getContext( '2d' );
+			context.drawImage( image, 100, 100 );
+			// scene.add( loader );
+		},
 
+		// onProgress callback currently not supported
+		undefined,
+
+		// onError callback
+		function () {
+			console.error( 'An error happened.' );
+		}
+	);
+// 
+// 	var geometry	= new THREE.CubeGeometry(1,1,1);
+// 	var material	= new THREE.MeshNormalMaterial({
+// 		transparent : true,
+// 		opacity: 0.5,
+// 		side: THREE.DoubleSide
+// 	});
+// 	var mesh	= new THREE.Mesh( geometry, material );
+// 	mesh.position.y	= geometry.parameters.height/2
+// 	scene.add( mesh );
+//
+// 	var geometry	= new THREE.TorusKnotGeometry(0.3,0.1,64,16);
+// 	var material	= new THREE.MeshNormalMaterial();
+// 	var mesh	= new THREE.Mesh( geometry, material );
+// 	mesh.position.y	= 0.5
+// 	scene.add( mesh );
+//
+//
+// 	onRenderFcts.push(function(delta){
+// 		mesh.rotation.x += Math.PI*delta
+// 	})
+//
+// 	var img = new THREE.MeshBasicMaterial({ //CHANGED to MeshBasicMaterial
+// 		map:THREE.ImageUtils.loadTexture('img/front.jpg')
+// });
+// img.map.needsUpdate = true;
 
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
