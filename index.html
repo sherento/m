@@ -150,16 +150,18 @@
 
 	//add image
 
-	var texture = new THREE.TextureLoader().load('image/surf.jpg');
-	
-	var geometry = new THREE.BoxGeometry( 10, 10, 10 );
-	var material = new THREE.MeshBasicMaterial( { map: texture } );
-	var mesh = new THREE.Mesh( geometry, material );
-	scene.add( mesh );
+	// var texture = new THREE.TextureLoader().load('image/surf.jpg');
+  //
+	// var geometry = new THREE.BoxGeometry( 10, 10, 10 );
+	// var material = new THREE.MeshBasicMaterial( { map: texture } );
+	// var mesh = new THREE.Mesh( geometry, material );
+	// mesh.position.y = 0.5;
+	// scene.add( mesh );
 
-	onRenderFcts.push(function(delta) {
-		mesh.rotation.y += MATH.PI*delta
-	})
+	var map = new THREE.TextureLoader().load( "image/surf.jpg" );
+	var material = new THREE.SpriteMaterial( { map: map, color: 0x000, fog: true } );
+	var sprite = new THREE.Sprite( material );
+	scene.add( sprite );
 
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
@@ -170,7 +172,7 @@
 		renderer.render( scene, camera );
 	})
 
-	// run the rendering loop
+	run the rendering loop
 	var lastTimeMsec= null
 	requestAnimationFrame(function animate(nowMsec){
 		// keep looping
