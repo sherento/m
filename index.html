@@ -4,6 +4,7 @@
 <script src='js/three.min.js'></script>
 <!-- ar.js -->
 <script src="ar.js"></script>
+<script src="js/datGUI.js"></script>
 <script>THREEx.ArToolkitContext.baseURL = '../'</script>
 
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
@@ -12,9 +13,11 @@
 	</div>
 
 	<script>
+
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Init
 	//////////////////////////////////////////////////////////////////////////////////
+
 
 	// init renderer
 	var renderer	= new THREE.WebGLRenderer({
@@ -41,6 +44,7 @@
 	// Create a camera
 	var camera = new THREE.Camera();
 	scene.add(camera);
+
 
 	////////////////////////////////////////////////////////////////////////////////
 	//          handle arToolkitSource
@@ -107,7 +111,7 @@
 	// init controls for camera
 	var markerControls = new THREEx.ArMarkerControls(arToolkitContext, camera, {
 		type : 'pattern',
-		patternUrl : 'image/pattern-letterM.patt',
+		patternUrl : 'image/pattern-letterA.patt',
 		// patternUrl : THREEx.ArToolkitContext.baseURL + '../data/data/patt.kanji',
 		// as we controls the camera, set changeMatrixMode: 'cameraTransformMatrix'
 		changeMatrixMode: 'cameraTransformMatrix'
@@ -120,6 +124,8 @@
 	//////////////////////////////////////////////////////////////////////////////////
 
 	// add a torus knot
+
+	//cube rotating
 	// var geometry	= new THREE.CubeGeometry(1,1,1);
 	// var material	= new THREE.MeshNormalMaterial({
 	// 	transparent : true,
@@ -129,7 +135,8 @@
 	// var mesh	= new THREE.Mesh( geometry, material );
 	// mesh.position.y	= geometry.parameters.height/2
 	// scene.add( mesh );
-  //
+
+	//torus knot rotating
 	// var geometry	= new THREE.TorusKnotGeometry(0.3,0.1,64,16);
 	// var material	= new THREE.MeshNormalMaterial();
 	// var mesh	= new THREE.Mesh( geometry, material );
@@ -142,60 +149,17 @@
 	// })
 
 	//add image
-	// instantiate a loader
 
-	// var loader = new THREE.ImageLoader();
-  //
-	// //load a image resource
-	// loader.load(
-	// 	// resource URL
-		// 'image/surf.jpg',
-  //
-	// 	// onLoad callback
-	// 	function ( image ) {
-	// 		// use the image, e.g. draw part of it on a canvas
-	// 		var canvas = document.createElement( 'canvas' );
-	// 		var context = canvas.getContext( '2d' );
-	// 		context.drawImage( image, 100, 100 );
-	// 		// scene.add( loader );
-	// 	},
-  //
-	// 	// onProgress callback currently not supported
-	// 	undefined,
-  //
-	// 	// onError callback
-	// 	function () {
-	// 		console.error( 'An error happened.' );
-	// 	}
-	// );
-//
-	// var geometry	= new THREE.CubeGeometry(1,1,1);
-// 	var material	= new THREE.MeshNormalMaterial({
-// 		transparent : true,
-// 		opacity: 0.5,
-// 		side: THREE.DoubleSide
-// 	});
-// 	var mesh	= new THREE.Mesh( geometry, material );
-// 	mesh.position.y	= geometry.parameters.height/2
-// 	scene.add( mesh );
-//
-// 	var geometry	= new THREE.TorusKnotGeometry(0.3,0.1,64,16);
-// 	var material	= new THREE.MeshNormalMaterial();
-// 	var mesh	= new THREE.Mesh( geometry, material );
-// 	mesh.position.y	= 0.5
-// 	scene.add( mesh );
-//
-//
-// 	onRenderFcts.push(function(delta){
-// 		mesh.rotation.x += Math.PI*delta
-// 	})
-//
-	var img = new THREE.MeshBasicMaterial({
-		map:THREE.ImageUtils.loadTexture('image/surf.jpg')
-});
-		img.map.needsUpdate = true;
-	scene.add( image );
+	var texture = new THREE.TextureLoader().load('image/surf.jpg');
+	
+	var geometry = new THREE.BoxGeometry( 10, 10, 10 );
+	var material = new THREE.MeshBasicMaterial( { map: texture } );
+	var mesh = new THREE.Mesh( geometry, material );
+	scene.add( mesh );
 
+	onRenderFcts.push(function(delta) {
+		mesh.rotation.y += MATH.PI*delta
+	})
 
 	//////////////////////////////////////////////////////////////////////////////////
 	//		render the whole thing on the page
@@ -220,6 +184,8 @@
 			onRenderFct(deltaMsec/1000, nowMsec/1000)
 		})
 	})
+
+
 	</script>
 
 </body>
